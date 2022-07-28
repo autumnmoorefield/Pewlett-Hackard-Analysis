@@ -55,3 +55,63 @@ CREATE TABLE titles (
 );
 
 SELECT * FROM departments;
+
+CREATE TABLE IF NOT EXISTS public.titles (
+    emp_no integer NOT NULL,
+    title character varying COLLATE pg_catalog."default" NOT NULL,
+    from_date date NOT NULL,
+    to_date date NOT NULL,
+    CONSTRAINT pk_titles PRIMARY KEY (emp_no, from_date, to_date),
+    CONSTRAINT fk_titles_emp_no FOREIGN KEY (emp_no)
+        REFERENCES public.employees (emp_no) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+
+SELECT * FROM employees LIMIT 5;
+
+SELECT * FROM dept_manager LIMIT 5;
+
+CREATE TABLE IF NOT EXISTS public.titles (
+    emp_no integer NOT NULL,
+    title character varying COLLATE pg_catalog."default" NOT NULL,
+    from_date date NOT NULL,
+    to_date date NOT NULL,
+    CONSTRAINT pk_titles PRIMARY KEY (emp_no, from_date, to_date),
+    CONSTRAINT fk_titles_emp_no FOREIGN KEY (emp_no)
+        REFERENCES public.employees (emp_no) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+SELECT * FROM titles LIMIT 5;
+
+DROP TABLE titles;
+
+CREATE TABLE IF NOT EXISTS public.titles (
+    emp_no integer NOT NULL,
+    title character varying COLLATE pg_catalog."default" NOT NULL,
+    from_date date NOT NULL,
+    to_date date NOT NULL,
+    CONSTRAINT pk_titles PRIMARY KEY (emp_no, from_date, to_date),
+    CONSTRAINT fk_titles_emp_no FOREIGN KEY (emp_no)
+        REFERENCES public.employees (emp_no) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+SELECT * FROM titles LIMIT 5;
+
+DROP TABLE dept_emp;
+
+CREATE TABLE dept_emp ( 
+	emp_no INT NOT NULL,
+	dept_no VARCHAR(4) NOT NULL,
+	from_date DATE NOT NULL,
+	to_date DATE NOT NULL,
+	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+	FOREIGN KEY (dept_no) REFERENCES departments (dept_no)
+);
+
+SELECT * FROM dept_emp LIMIT 15;
